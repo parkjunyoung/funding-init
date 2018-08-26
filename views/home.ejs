@@ -1,0 +1,83 @@
+<% include ./header.ejs %>
+
+    <h1>크라우드 펀딩</h1>
+
+    <table class="table table-bordered table-hover">
+        <colgroup>
+            <col width="200" />
+            <col />
+        </colgroup>
+        <tr>
+            <td>마감일</td>
+            <td id="endDate"></td>
+        </tr>
+        <tr>
+            <td>목표 모금액</td>
+            <td id="fundingGoal"></td>
+        </tr>
+        <tr>
+            <td>현재 모금액</td>
+            <td id="amountRaised"></td>
+        </tr>
+    </table>
+
+    <div class="progress">
+        <div id="progressBar" class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+
+    <hr />
+
+    <h1>펀딩 참여해보기</h1>
+
+
+    <form action="" id="goFund">
+    <table class="table table-bordered table-hover form-inline">
+        <colgroup>
+            <col width="200" />
+            <col />
+        </colgroup>
+        <tr>
+            <td>내 계좌 잔액 확인</td>
+            <td>
+                <input type="text" name="myAddress" class="form-control" 
+                    style="width:300px" value="" placeholder="주소입력" />
+                <button class="btn btn-primary" id="confirmBalance">확인</button>
+                <span id="myBalance">Loading...</span>
+            </td>
+        </tr>
+        <tr>
+            <td>입금액</td>
+            <td>
+                <input type="text" class="form-control" name="ether" style="width:50px;">
+                단위 ( ether )
+            </td>
+        </tr>
+        <tr>
+            <td>키 값</td>
+            <td>
+                <input type="text" name="myKey" class="form-control" 
+                style="width:300px" value="" />
+                <button class="btn btn-danger">펀딩 참여실행!</button>
+                <span id="loading">
+                    <img src="/static/images/kloader.gif" alt="">
+                </span>
+                <span id="success">전송완료</span>
+            </td>
+        </tr>
+    </table>
+    </form>
+
+<style>
+#myBalance::after { content : " ether" }
+#loading { display : none }
+#success { display : none }
+</style>
+<script>
+var web3 = new Web3();
+web3.setProvider(new web3.providers.HttpProvider("주소주소"));
+var contract = web3.eth.contract().at("컨트랙트주소");	
+$(document).ready(function(){
+    alert('111')
+});
+</script>
+<% include ./footer.ejs %>
